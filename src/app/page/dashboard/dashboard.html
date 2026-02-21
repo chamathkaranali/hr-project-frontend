@@ -1,1 +1,121 @@
-<p>dashboard works!</p>
+<div class="dashboard-container">
+  <!-- Header -->
+  <div class="dashboard-header">
+    <div class="header-content">
+      <h1>Dashboard</h1>
+      <p>Welcome back! Here's your HR overview</p>
+    </div>
+  </div>
+
+  <!-- Key Metrics Cards -->
+  <div class="metrics-grid">
+    <div class="metric-card total-employees">
+      <div class="metric-icon">👥</div>
+      <div class="metric-content">
+        <h3>Total Employees</h3>
+        <p class="metric-value">{{ totalEmployees }}</p>
+      </div>
+    </div>
+
+    <div class="metric-card active-employees">
+      <div class="metric-icon">✅</div>
+      <div class="metric-content">
+        <h3>Active Employees</h3>
+        <p class="metric-value">{{ activeEmployees }}</p>
+      </div>
+    </div>
+
+    <div class="metric-card on-leave">
+      <div class="metric-icon">🏝️</div>
+      <div class="metric-content">
+        <h3>On Leave</h3>
+        <p class="metric-value">{{ onLeave }}</p>
+      </div>
+    </div>
+
+    <div class="metric-card open-positions">
+      <div class="metric-icon">📋</div>
+      <div class="metric-content">
+        <h3>Open Positions</h3>
+        <p class="metric-value">{{ openPositions }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Content Grid -->
+  <div class="content-grid">
+    <!-- Department Distribution -->
+    <div class="card department-card">
+      <h2>Department Distribution</h2>
+      <div class="department-list">
+        <div class="department-item" *ngFor="let dept of departments">
+          <div class="department-info">
+            <h4>{{ dept.name }}</h4>
+            <p class="employee-count">{{ dept.employees }} employees</p>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" [style.width.%]="(dept.employees / totalEmployees) * 100" [style.background-color]="dept.color"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Upcoming Leave -->
+    <div class="card upcoming-leave-card">
+      <div class="card-header">
+        <h2>Upcoming Leave</h2>
+        <a href="#" class="view-all">View All →</a>
+      </div>
+      <div class="leave-list">
+        <div class="leave-item" *ngFor="let leave of upcomingLeave">
+          <div class="leave-icon">📅</div>
+          <div class="leave-details">
+            <h4>{{ leave.name }}</h4>
+            <p class="leave-type">{{ leave.leaveType }}</p>
+            <p class="leave-dates">{{ leave.from }} - {{ leave.to }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Recent Activities -->
+  <div class="card activities-card">
+    <div class="card-header">
+      <h2>Recent Activities</h2>
+      <a href="#" class="view-all">View All →</a>
+    </div>
+    <div class="activities-list">
+      <div class="activity-item" *ngFor="let activity of recentActivities">
+        <div class="activity-icon">{{ getActivityIcon(activity.type) }}</div>
+        <div class="activity-details">
+          <p class="activity-text">{{ activity.activity }}</p>
+          <p class="activity-date">{{ activity.date }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Quick Actions -->
+  <div class="quick-actions">
+    <h2>Quick Actions</h2>
+    <div class="actions-grid">
+      <button class="action-btn add-employee">
+        <span class="action-icon">➕</span>
+        <span>Add Employee</span>
+      </button>
+      <button class="action-btn request-leave">
+        <span class="action-icon">📅</span>
+        <span>Request Leave</span>
+      </button>
+      <button class="action-btn start-recruitment">
+        <span class="action-icon">💼</span>
+        <span>Start Recruitment</span>
+      </button>
+      <button class="action-btn process-payroll">
+        <span class="action-icon">💰</span>
+        <span>Process Payroll</span>
+      </button>
+    </div>
+  </div>
+</div>
