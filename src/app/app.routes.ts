@@ -9,7 +9,7 @@ import { Header } from './page/header/header';
 
 export const routes: Routes = [
     {
-        path: '/dashoard',
+        path: '/dashboard',
         component: Dashboard
     },
     {
